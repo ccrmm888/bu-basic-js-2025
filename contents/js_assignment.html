@@ -46,6 +46,42 @@
 
 
     <h3>Your solution for assignment</h3>
+    <input id="txtnewtask" type="text" placeholder="Enter new task">
+
+    <input id="btnAdd" type="button" value="Add" onclick="add();">
+    <input id="btnClear" type="button" value="Clear all todos" onclick="clearAll();">
+
+    <ul id="todoList"></ul>
+
+    <style>
+      input[type="checkbox"]:checked{accent-color:blue}
+      .done{text-decoration: line-through;color:gray}
+    </style>
+
+    <script>
+      function add(){
+          const task = document.getElementById('txtnewtask').value;
+
+          const li = document.createElement('li');
+          const checkbox = document.createElement('input');
+
+          checkbox.type = 'checkbox';
+          checkbox.onclick = function() {
+           li.style.textDecoration = checkbox.checked ? "line-through" : "none";
+          };
+
+          const textNode = document.createTextNode(" " + task);
+          li.appendChild(checkbox);
+          li.appendChild(textNode);
+
+          document.getElementById('todoList').appendChild(li);
+          document.getElementById('txtnewtask').value = "";
+      }
+
+      function clearAll() {
+       document.getElementById('todoList').innerHTML = "";
+      }
+    </script>
 
 </body>
 
